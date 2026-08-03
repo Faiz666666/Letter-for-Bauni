@@ -1,22 +1,24 @@
 document.addEventListener("DOMContentLoaded", () => {
   // =========================================
-  // 1. LOADER DISMISSAL
+  // 1. BULLETPROOF LOADER DISMISSAL
   // =========================================
   const loader = document.getElementById("loader");
-  if (loader) {
-    window.addEventListener("load", () => {
-      loader.classList.add("hidden");
-      setTimeout(() => { loader.style.display = "none"; }, 600);
-    });
 
-    // Fallback: Force hide loader after 2.5 seconds if window 'load' event hangs
-    setTimeout(() => {
-      if (loader && !loader.classList.contains("hidden")) {
-        loader.classList.add("hidden");
-        setTimeout(() => { loader.style.display = "none"; }, 600);
-      }
-    }, 2500);
-  }
+  const hideLoader = () => {
+    if (loader && !loader.classList.contains("hidden")) {
+      loader.classList.add("hidden");
+      setTimeout(() => {
+        loader.style.display = "none";
+      }, 600);
+    }
+  };
+
+  // 1. Try hiding when full page loads
+  window.addEventListener("load", hideLoader);
+
+  // 2. HARD SAFETY NET: Force hide after 1.2s regardless of external files/audio status
+  setTimeout(hideLoader, 1200);
+
 
   // =========================================
   // 2. DAY / NIGHT THEME TOGGLE
@@ -76,11 +78,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         ctx.beginPath();
         if (p.isPetal) {
-          // Soft pink sakura petal
           ctx.fillStyle = `rgba(244, 182, 194, ${p.opacity})`;
           ctx.ellipse(p.x, p.y, p.size * 1.5, p.size, Math.PI / 4, 0, Math.PI * 2);
         } else {
-          // Gentle glowing sparkle
           ctx.fillStyle = `rgba(255, 255, 255, ${p.opacity})`;
           ctx.arc(p.x, p.y, p.size * 0.6, 0, Math.PI * 2);
         }
@@ -106,7 +106,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const startAudio = () => {
       bgAudio.play().then(() => {
         musicToggle.classList.add("playing");
-      }).catch(err => console.log("Audio play blocked:", err));
+      }).catch(err => console.log("Audio autoplay prevented by browser:", err));
       
       musicPrompt.classList.remove("visible");
       hasInteracted = true;
@@ -253,7 +253,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const journalStatus = document.getElementById("journalStatus");
 
   if (journalInput && journalSaveBtn && journalDeleteBtn && journalStatus) {
-    // Load existing saved entry if present
     const savedEntry = localStorage.getItem("aditi_journal_entry");
     if (savedEntry) {
       journalInput.value = savedEntry;
@@ -313,11 +312,9 @@ document.addEventListener("DOMContentLoaded", () => {
       star.className = "interactive-star";
       star.innerHTML = "✨";
 
-      // Random position inside section
       star.style.top = `${Math.random() * 85 + 5}%`;
       star.style.left = `${Math.random() * 90 + 5}%`;
 
-      // Assign a word
       const wordSpan = document.createElement("span");
       wordSpan.className = "star-word";
       wordSpan.textContent = starWords[i % starWords.length];
@@ -352,4 +349,52 @@ document.addEventListener("DOMContentLoaded", () => {
   }, { root: null, threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
 
   reveals.forEach((element) => revealOnScroll.observe(element));
+});
+const PASSWORD = "noor se bhara tara";
+
+const unlockButton = document.getElementById("unlockButton");
+
+const passwordInput = document.getElementById("passwordInput");
+
+const lockScreen = document.getElementById("lockScreen");
+
+const wrongPassword = document.getElementById("wrongPassword");
+
+unlockButton.onclick = () => {
+
+    if(passwordInput.value===PASSWORD){
+
+        lockScreen.classList.add("lock-hidden");
+
+    }
+
+    else{
+
+        wrongPassword.textContent =
+        "Hmm... I don't think this letter belongs to you. 🤍";
+
+        document
+        .querySelector(".lock-card")
+        .classList.add("shake");
+
+        setTimeout(()=>{
+
+            document
+            .querySelector(".lock-card")
+            .classList.remove("shake");
+
+        },350);
+
+    }
+
+};
+
+passwordInput.addEventListener("keydown",(e)=>{
+
+    if(e.key==="Enter"){
+
+        unlockButton.click();
+
+    }
+
 });
