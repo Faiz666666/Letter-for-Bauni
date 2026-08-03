@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Aditi</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;1,500&family=Kalam:wght@400;700&family=Quicksand:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="bg-bloom" aria-hidden="true"></div>
+
+<!-- ============== MUSIC ============== -->
+<audio id="bgAudio" src="song.mp3" loop preload="auto"></audio>
+<button class="music-toggle" id="musicToggle" aria-label="Play or pause the song">
+  <span class="music-bars"><span></span><span></span><span></span></span>
+</button>
+<div class="music-prompt" id="musicPrompt">
+  <p>tap anywhere to play our song</p>
+</div>
+
+<!-- ============== HERO ============== -->
+<section class="hero">
+  <p class="hero-eyebrow">for you, again</p>
+  <h1 class="hero-title">good morning, Aditi</h1>
+  <p class="hero-text">
+    New day, new page, same me in your corner. I put together a few more
+    things for you — letters, little reminders, and a song to sit with
+    while you read them.
+  </p>
+  <a href="#letters" class="scroll-cue">
+    <span>read a letter</span>
+    <span class="scroll-arrow">↓</span>
+  </a>
+</section>
+
+<!-- ============== LETTERS ============== -->
+<section id="letters" class="letters-section">
+  <p class="section-eyebrow">a few letters</p>
+  <h2 class="section-title">open whichever one finds you today</h2>
+
+  <div class="envelope-grid">
+
+    <button class="envelope" data-message="Some mornings will feel lighter before you even remember why they should feel heavy. Let those mornings happen without guilt. They're not you forgetting. They're you healing.">
+      <span class="seal">A</span>
+      <span class="envelope-label">for the mornings that feel lighter</span>
+    </button>
+
+    <button class="envelope" data-message="You keep apologising for still being sad about this. Stop. There's no deadline on this feeling, no committee deciding you've grieved for long enough. Feel it exactly as long as you need to.">
+      <span class="seal">A</span>
+      <span class="envelope-label">for when you're tired of still being sad</span>
+    </button>
+
+    <button class="envelope" data-message="You are not hard to love. You are not too much, too sensitive, or too anything. You gave your love to someone who couldn't meet it. That's a gap in him, not an excess in you.">
+      <span class="seal">A</span>
+      <span class="envelope-label">for when you wonder if you're hard to love</span>
+    </button>
+
+    <button class="envelope" data-message="Put this on when you need it, and just lie there. You don't have to do anything with the feeling. You don't have to fix it right now. Just let the song hold it for a few minutes so you don't have to.">
+      <span class="seal">A</span>
+      <span class="envelope-label">for when you just need to lie down and feel it</span>
+    </button>
+
+    <button class="envelope" data-message="You keep thinking about the version of the future you'd planned with him. That future is gone, yes. But you get to build a new one, and this time every single detail in it is actually yours to choose.">
+      <span class="seal">A</span>
+      <span class="envelope-label">for when you mourn the future you'd planned</span>
+    </button>
+
+    <button class="envelope" data-message="You don't have to perform strength for people who ask how you're doing. 'I'm having a hard time, thanks for asking' is a full, honest, acceptable answer. You don't owe anyone a brave face.">
+      <span class="seal">A</span>
+      <span class="envelope-label">for when you're tired of pretending you're fine</span>
+    </button>
+
+    <button class="envelope" data-message="Somewhere down the line, this is going to be the thing that taught you what you won't settle for again. Right now it just hurts. Later, it'll make sense. Both of those things are true at once.">
+      <span class="seal">A</span>
+      <span class="envelope-label">for when none of this makes sense yet</span>
+    </button>
+
+    <button class="envelope" data-message="I know you keep waiting to feel 'back to normal.' Here's the thing — you won't go back. You'll go forward, into a version of normal that's a little wiser and a little more yours. That's not a loss. That's growth in disguise.">
+      <span class="seal">A</span>
+      <span class="envelope-label">for when you're waiting to feel like yourself again</span>
+    </button>
+
+    <button class="envelope" data-message="I know your instinct is to disappear a little right now, to cancel plans and go quiet. Come out anyway, even for an hour. You don't have to be fun. Just be there. I'll do the rest.">
+      <span class="seal">A</span>
+      <span class="envelope-label">for when you want to cancel on everyone again</span>
+    </button>
+
+    <button class="envelope" data-message="You will fall in love again, properly, with someone who makes it look easy to choose you. And until then, you are so completely loved right here, right now, exactly as you are.">
+      <span class="seal">A</span>
+      <span class="envelope-label">for a little hope, on the harder days</span>
+    </button>
+
+    <button class="envelope" data-message="This isn't the end of your story, it's barely even a plot twist. Give it six months, a year. You'll look back at this exact moment and barely recognise how much smaller it feels from there.">
+      <span class="seal">A</span>
+      <span class="envelope-label">for when it feels like the end of everything</span>
+    </button>
+
+    <button class="envelope" data-message="This one has no sad part. Just — I love you. I'm endlessly proud of how you're handling this. And I'm not going anywhere, not now, not ever. That's the whole letter.">
+      <span class="seal">A</span>
+      <span class="envelope-label">for absolutely no reason at all</span>
+    </button>
+
+  </div>
+</section>
+
+<!-- ============== LITTLE REMINDERS (marquee) ============== -->
+<section class="reminders-section">
+  <p class="section-eyebrow">on a loop, just like these thoughts should be</p>
+  <div class="marquee">
+    <div class="marquee-track">
+      <span>you are so loved</span>
+      <span>•</span>
+      <span>this is not the end</span>
+      <span>•</span>
+      <span>you are doing better than you think</span>
+      <span>•</span>
+      <span>it's okay to not be okay yet</span>
+      <span>•</span>
+      <span>you deserve so much softness</span>
+      <span>•</span>
+      <span>you are so loved</span>
+      <span>•</span>
+      <span>this is not the end</span>
+      <span>•</span>
+      <span>you are doing better than you think</span>
+      <span>•</span>
+      <span>it's okay to not be okay yet</span>
+      <span>•</span>
+      <span>you deserve so much softness</span>
+      <span>•</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============== REMEMBER WHEN ============== -->
+<section class="memories-section">
+  <p class="section-eyebrow">a little scrapbook, in words</p>
+  <h2 class="section-title">remember when</h2>
+
+  <ul class="memories-list">
+    <li>we stayed up till 4am over absolutely nothing important, and it was one of the best nights of my year.</li>
+    <li>you cried laughing so hard at that terrible joke that you couldn't breathe for a full minute.</li>
+    <li>we got completely lost trying to find that one café and ended up somewhere better.</li>
+    <li>you showed up at my door at midnight, no questions asked, just because I said I needed someone.</li>
+    <li>we made a plan so ridiculous neither of us admits to it in front of other people.</li>
+  </ul>
+</section>
+
+<!-- ============== REASONS ============== -->
+<section class="reasons-section">
+  <p class="section-eyebrow">a short, incomplete list</p>
+  <h2 class="section-title">a few reasons, among many</h2>
+
+  <ul class="reasons-list">
+    <li>Your voice notes are somehow always exactly three minutes too long, and I wouldn't change a second of them.</li>
+    <li>You say the quiet, awkward thing out loud so nobody else has to.</li>
+    <li>You've never let me sit in silence when I needed someone to talk to.</li>
+    <li>You care about people so loudly and so fully, even when it isn't returned the same way.</li>
+    <li>You're still soft, after everything, and that's not weakness. That's strength most people don't have.</li>
+    <li>You make ordinary days feel like something worth remembering.</li>
+  </ul>
+</section>
+
+<!-- ============== FOOTER ============== -->
+<footer class="footer">
+  <p class="footer-line">wherever you are in all of this, I'm right there with you.</p>
+  <p class="footer-sign">— your best friend, still and always</p>
+</footer>
+
+<!-- ============== LETTER MODAL ============== -->
+<div class="note-modal" id="noteModal">
+  <div class="note-modal-card">
+    <button class="note-modal-close" id="noteModalClose" aria-label="Close">✕</button>
+    <p class="note-modal-text" id="noteModalText"></p>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
