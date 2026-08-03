@@ -350,7 +350,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   reveals.forEach((element) => revealOnScroll.observe(element));
 });
-const PASSWORD = "noor se bhara tara";
+const PASSWORD = "Noor se bhara tara";
 
 const unlockButton = document.getElementById("unlockButton");
 
