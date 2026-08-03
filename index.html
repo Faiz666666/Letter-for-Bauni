@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="A little corner of the internet made for Aditi.">
+<meta name="theme-color" content="#2b2a52">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌸</text></svg>">
+<title>For Aditi</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&family=Patrick+Hand&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ============================================
+     LOADER
+============================================ -->
+<div class="loader" id="loader">
+  <div class="loader-inner">
+    <span class="loader-flower">🌸</span>
+    <p>opening something for you...</p>
+  </div>
+</div>
+
+<!-- ============================================
+     MUSIC
+============================================ -->
+<audio id="bgAudio" src="song.mp3" loop preload="auto"></audio>
+<button class="music-toggle" id="musicToggle" aria-label="Play or pause the song">
+  <span class="music-bars"><span></span><span></span><span></span></span>
+</button>
+<div class="music-prompt" id="musicPrompt"><p>tap anywhere to play our song</p></div>
+
+<!-- ============================================
+     EMERGENCY BUTTON (always available)
+============================================ -->
+<button class="emergency-btn" id="emergencyBtn">🌙 emergency</button>
+
+<div class="emergency-modal" id="emergencyModal">
+  <div class="emergency-card">
+    <button class="emergency-close" id="emergencyClose" aria-label="Close">✕</button>
+    <p class="emergency-title">hey. i've got you.</p>
+    <p class="emergency-text">
+      If you're here, something feels like too much right now.
+      Just breathe with me for a second — in for four, hold for four,
+      out for four. Whatever this feeling is, it will pass, even
+      when it doesn't feel like it will.
+    </p>
+    <p class="emergency-text">
+      Call me. Any hour, no explanation needed, I will pick up.
+    </p>
+    <p class="emergency-note">
+      And if things ever feel unsafe or unbearable, please also reach out
+      to someone near you or a helpline like AASRA (91-9820466726, 24/7) —
+      in addition to me, not instead of me.
+    </p>
+  </div>
+</div>
+
+<!-- ============================================
+     CHAPTER 1 — FOUNDATION
+============================================ -->
+<section class="chapter chapter-1">
+  <div class="dawn-glow" aria-hidden="true"></div>
+
+  <div class="hero reveal">
+    <p class="hero-eyebrow">a whole website, just for you</p>
+    <h1 class="hero-title">hey Aditi,</h1>
+    <p class="hero-text">
+      I made you something bigger this time. Letters, notes, a jar full
+      of silly memories, a whole night sky waiting at the end of it.
+      Take your time. There's no rush, and there's no wrong way through it.
+    </p>
+    <a href="#chapter2" class="scroll-cue">
+      <span>start reading</span>
+      <span class="scroll-arrow">↓</span>
+    </a>
+  </div>
+</section>
+
+<!-- ============================================
+     CHAPTER 2 — HEART
+============================================ -->
+<section class="chapter chapter-2" id="chapter2">
+
+  <div class="chapter-heading reveal">
+    <p class="section-eyebrow">chapter two</p>
+    <h2 class="section-title">letters, for whenever you need one</h2>
+    <p class="section-sub">30 of them. Open whichever one finds you today.</p>
+  </div>
+
+  <div class="envelope-grid reveal" id="letterGrid">
+    <!-- 30 letters injected via data-message, written directly -->
+    <button class="envelope" data-message="For one second this morning, you forgot. Then it came back. That half-second of forgetting is not nothing — it's the first proof that your mind knows how to rest from this, even briefly.">
+      <span class="seal">✉</span><span class="envelope-label">when you wake up and for a second forget</span>
+    </button>
+    <button class="envelope" data-message="Someone said his name and your stomach dropped. That's just a reflex healing, not a setback. Reflexes fade with time. Give this one time too.">
+      <span class="seal">✉</span><span class="envelope-label">when someone says his name out of nowhere</span>
+    </button>
+    <button class="envelope" data-message="A happy couple on your feed isn't a verdict on your life. You're not behind. You're just in a different part of your story, one with a much better ending coming.">
+      <span class="seal">✉</span><span class="envelope-label">when you scroll past a couple that looks happy</span>
+    </button>
+    <button class="envelope" data-message="Setting that boundary probably felt uncomfortable. Good boundaries usually do at first. I'm proud of you for choosing your peace, even when it was hard.">
+      <span class="seal">✉</span><span class="envelope-label">when you're proud of a boundary you set</span>
+    </button>
+    <button class="envelope" data-message="Some show reminds you of watching it together, and now it feels tainted. Give it time — you'll get to reclaim it as just a good show again, on your own terms.">
+      <span class="seal">✉</span><span class="envelope-label">when a show reminds you of watching it with him</span>
+    </button>
+    <button class="envelope" data-message="Nervous about going out again is normal, not a sign something's wrong with you. Go anyway, even for an hour. You get to practice being out in the world again at your own pace.">
+      <span class="seal">✉</span><span class="envelope-label">when you're nervous about a night out</span>
+    </button>
+    <button class="envelope" data-message="You smiled without meaning to. Let it happen. You don't need permission to feel good, even mid-heartbreak. That smile is allowed to just be a smile.">
+      <span class="seal">✉</span><span class="envelope-label">when you catch yourself smiling for no reason</span>
+    </button>
+    <button class="envelope" data-message="Trust doesn't have to come back all at once. It comes back in small doses, with the right people, at the right pace. You will trust again. Slowly counts.">
+      <span class="seal">✉</span><span class="envelope-label">when you're scared you'll never trust again</span>
+    </button>
+    <button class="envelope" data-message="A stranger being kind to you out of nowhere isn't random. The world still has softness in it for you, even now. Let it in.">
+      <span class="seal">✉</span><span class="envelope-label">when a stranger is unexpectedly kind to you</span>
+    </button>
+    <button class="envelope" data-message="You finished something, even something small. That's momentum. That's proof you can still follow through, even while carrying all of this. Well done.">
+      <span class="seal">✉</span><span class="envelope-label">when you finish something you started</span>
+    </button>
+    <button class="envelope" data-message="Everyone's on a different timeline, and yours isn't behind, it's just yours. Comparing chapters from two completely different books was never going to be fair to either book.">
+      <span class="seal">✉</span><span class="envelope-label">when you feel behind compared to your friends</span>
+    </button>
+    <button class="envelope" data-message="Festivals hit different this year, I know. It's allowed to feel a little off. Come celebrate with me anyway — we'll make new traditions if the old ones feel too heavy right now.">
+      <span class="seal">✉</span><span class="envelope-label">when a festival or holiday feels different this year</span>
+    </button>
+    <button class="envelope" data-message="You don't need a new update on him to talk to me. Talk to me about anything, or nothing. I'm not keeping count of how many times you've mentioned this.">
+      <span class="seal">✉</span><span class="envelope-label">when you feel like you've talked about him too much</span>
+    </button>
+    <button class="envelope" data-message="Doing something alone for the first time is scary and also kind of powerful. You're allowed to feel both at once. Small proof, every time, that you can hold your own hand.">
+      <span class="seal">✉</span><span class="envelope-label">when you do something alone for the first time</span>
+    </button>
+    <button class="envelope" data-message="Your playlist landed on 'our' song. Skip it if you need to, or sit with it for a minute if you don't. Either choice is fine. The song doesn't get to decide your day.">
+      <span class="seal">✉</span><span class="envelope-label">when your playlist autoplays into 'that' song</span>
+    </button>
+    <button class="envelope" data-message="A whole day of feeling strong. Notice it. Remember it exists as a possibility, even if tomorrow dips again. You get to have more of these days, and you will.">
+      <span class="seal">✉</span><span class="envelope-label">when you feel strong for a whole day</span>
+    </button>
+    <button class="envelope" data-message="Restless midnight scrolling rarely finds anything good. Put the phone face down. Text me instead — I answer at ridiculous hours, always have.">
+      <span class="seal">✉</span><span class="envelope-label">when you're scrolling at midnight, restless</span>
+    </button>
+    <button class="envelope" data-message="You don't owe anyone the full story. 'It didn't work out' is a complete sentence. You get to decide who earns the details, and when, or if at all.">
+      <span class="seal">✉</span><span class="envelope-label">when someone asks what happened and you don't want to explain</span>
+    </button>
+    <button class="envelope" data-message="You did something good and there was no obvious person to tell first. Tell me. I want to hear about it, always, even the small wins, especially the small wins.">
+      <span class="seal">✉</span><span class="envelope-label">when you accomplish something and no one's around to tell</span>
+    </button>
+    <button class="envelope" data-message="Wanting simple, consistent love isn't 'too much.' It's the bare minimum, and you deserve people who meet it without being asked twice.">
+      <span class="seal">✉</span><span class="envelope-label">when you feel 'too much' for wanting simple things</span>
+    </button>
+    <button class="envelope" data-message="One bad relationship doesn't get to rewrite your whole judgment. You've made plenty of good calls in your life. This one just didn't work out. That's allowed.">
+      <span class="seal">✉</span><span class="envelope-label">when you doubt your own judgment because of him</span>
+    </button>
+    <button class="envelope" data-message="You are not 'the girl who got her heart broken.' You are a hundred other things first, and this is just one hard chapter tucked somewhere in the middle of a very long book.">
+      <span class="seal">✉</span><span class="envelope-label">when you need a reminder you're not defined by this</span>
+    </button>
+    <button class="envelope" data-message="Family can say the wrong thing without meaning any harm by it. It's allowed to still sting. You're also allowed to just say 'that hurt a little' out loud, to them or to me.">
+      <span class="seal">✉</span><span class="envelope-label">when family says something that stings, without meaning to</span>
+    </button>
+    <button class="envelope" data-message="Nightmares about it are just your brain processing on overtime while you sleep. It doesn't mean you're going backward. Text me when you wake up, I'll be up.">
+      <span class="seal">✉</span><span class="envelope-label">when you have a nightmare about the breakup</span>
+    </button>
+    <button class="envelope" data-message="You don't have to decide right now whether to go. Whatever you choose — go or skip it — is the right choice, because you're the one who has to live with it, not anyone else.">
+      <span class="seal">✉</span><span class="envelope-label">when deciding whether to go to a mutual friend's event</span>
+    </button>
+    <button class="envelope" data-message="Feeling nothing at all is still a feeling, and it's a normal one after everything. Numbness is your mind giving you a breather. It won't last forever. Let it rest you for now.">
+      <span class="seal">✉</span><span class="envelope-label">when you feel numb, nothing at all</span>
+    </button>
+    <button class="envelope" data-message="That was the good kind of cry, the one that empties something out instead of filling something up. Let those happen whenever they need to. They're doing you good.">
+      <span class="seal">✉</span><span class="envelope-label">when you finally cry the 'good' kind of cry</span>
+    </button>
+    <button class="envelope" data-message="A whole day and you didn't check anything about him, not once. That's not nothing, that's a milestone. Quietly, but surely, you're moving forward.">
+      <span class="seal">✉</span><span class="envelope-label">when a whole day passes without checking on him</span>
+    </button>
+    <button class="envelope" data-message="Write the message. Say everything you need to say in it. Then don't send it. Sometimes the point was never for him to read it — it was for you to finally put it down.">
+      <span class="seal">✉</span><span class="envelope-label">when you want to write a message you'll never send</span>
+    </button>
+    <button class="envelope" data-message="Just an ordinary Tuesday, nothing remarkable happening. That's enough. Ordinary is what healed looks like most of the time. You're allowed to just have a normal day.">
+      <span class="seal">✉</span><span class="envelope-label">when today is just an ordinary day, and that's enough</span>
+    </button>
+  </div>
+
+  <div class="kindness-block reveal">
+    <p class="section-eyebrow">❤️ a few reminders</p>
+    <div class="kindness-grid">
+      <span class="kindness-note">you deserve kindness, especially from yourself</span>
+      <span class="kindness-note">you deserve patience while you heal</span>
+      <span class="kindness-note">you deserve people who choose you easily</span>
+      <span class="kindness-note">you deserve softness on your hardest days</span>
+      <span class="kindness-note">you deserve to feel safe in love again</span>
+      <span class="kindness-note">you deserve to take up space</span>
+      <span class="kindness-note">you deserve rest without guilt</span>
+      <span class="kindness-note">you deserve to be chosen without convincing anyone</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     CHAPTER 3 — COMFORT
+============================================ -->
+<section class="chapter chapter-3" id="chapter3">
+
+  <div class="chapter-heading reveal">
+    <p class="section-eyebrow">chapter three</p>
+    <h2 class="section-title">a little comfort, for the harder hours</h2>
+  </div>
+
+  <!-- SMILE JAR -->
+  <div class="smile-jar-block reveal">
+    <p class="section-eyebrow">🤍 the smile jar</p>
+    <p class="section-sub">tap the jar for something that (hopefully) makes you smile</p>
+    <button class="smile-jar" id="smileJar">🫙</button>
+    <p class="smile-jar-output" id="smileJarOutput">tap the jar to open it</p>
+  </div>
+
+  <!-- BREATHING -->
+  <div class="breathe-block reveal">
+    <p class="section-eyebrow">🌸 just breathe</p>
+    <div class="breathe-circle" id="breatheCircle"><span id="breatheText">breathe</span></div>
+    <p class="breathe-caption">tap it, and follow it for a minute</p>
+  </div>
+
+  <!-- 100 TINY NOTES -->
+  <div class="meadow-block reveal">
+    <p class="section-eyebrow">🌼 100 tiny notes</p>
+    <p class="section-sub">a whole field of small reminders, read as many as you want</p>
+    <div class="meadow" id="meadowNotes"><!-- populated by script.js --></div>
+  </div>
+
+</section>
+
+<!-- ============================================
+     CHAPTER 4 — MEMORIES
+============================================ -->
+<section class="chapter chapter-4" id="chapter4">
+
+  <div class="chapter-heading reveal">
+    <p class="section-eyebrow">chapter four</p>
+    <h2 class="section-title">us, and everything ahead of you</h2>
+  </div>
+
+  <!-- SCRAPBOOK -->
+  <div class="scrapbook-block reveal">
+    <p class="section-eyebrow">📸 a small scrapbook</p>
+    <p class="section-sub">placeholders for now — drop real photos into an /images folder and swap them in</p>
+    <div class="scrapbook-grid">
+      <div class="polaroid polaroid-1"><span class="polaroid-caption">that ridiculous road trip</span></div>
+      <div class="polaroid polaroid-2"><span class="polaroid-caption">the night we stayed up till 4am</span></div>
+      <div class="polaroid polaroid-3"><span class="polaroid-caption">our very questionable cooking experiment</span></div>
+      <div class="polaroid polaroid-4"><span class="polaroid-caption">the concert we screamed every word at</span></div>
+      <div class="polaroid polaroid-5"><span class="polaroid-caption">every terrible photo booth strip, ever</span></div>
+      <div class="polaroid polaroid-6"><span class="polaroid-caption">just an ordinary Tuesday, and it was perfect</span></div>
+    </div>
+  </div>
+
+  <!-- TIMELINE -->
+  <div class="timeline-block reveal">
+    <p class="section-eyebrow">🌅 a timeline, looking forward</p>
+    <div class="timeline">
+      <div class="timeline-item">
+        <span class="timeline-dot"></span>
+        <div class="timeline-content">
+          <h3>right now</h3>
+          <p>However today feels, this is where you are, and that's alright. One day, one hour, at a time.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <span class="timeline-dot"></span>
+        <div class="timeline-content">
+          <h3>a few weeks from now</h3>
+          <p>The ache gets quieter. Not gone, just quieter. Whole hours will pass without you thinking of him.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <span class="timeline-dot"></span>
+        <div class="timeline-content">
+          <h3>a few months from now</h3>
+          <p>You'll catch yourself laughing fully, no guilt attached. It'll start feeling like your life again.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <span class="timeline-dot"></span>
+        <div class="timeline-content">
+          <h3>a year from now</h3>
+          <p>This becomes a chapter you reference, not a wound you carry. You'll be so proud of who you became getting here.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REASONS -->
+  <div class="reasons-block reveal">
+    <p class="section-eyebrow">🌸 reasons she's amazing</p>
+    <ul class="reasons-list">
+      <li>You listen like whatever's being said actually matters, because to you, it does.</li>
+      <li>You've never made anyone feel small for needing help.</li>
+      <li>You remember the tiny details people mention once, months later.</li>
+      <li>You show up early enough to help set up and stay late enough to help clean up.</li>
+      <li>Your kindness has never once run out, even on your hardest days.</li>
+      <li>You say the hard truth gently, but you still say it.</li>
+      <li>You've never used someone's vulnerability against them.</li>
+      <li>You give people the benefit of the doubt, even when it costs you.</li>
+      <li>You make people feel like the most interesting person in the room.</li>
+      <li>You never let anyone eat alone if you can help it.</li>
+      <li>You are, without question, one of the best people I know.</li>
+    </ul>
+  </div>
+
+  <!-- PROMISES -->
+  <div class="promises-block reveal">
+    <p class="section-eyebrow">🤍 a few promises</p>
+    <ol class="promises-list">
+      <li><span class="promise-no">01</span>I will pick up. Every time, any hour.</li>
+      <li><span class="promise-no">02</span>I will tell you the truth, gently, but always.</li>
+      <li><span class="promise-no">03</span>I will remind you of your worth as many times as it takes.</li>
+      <li><span class="promise-no">04</span>I will show up, uninvited if I have to.</li>
+      <li><span class="promise-no">05</span>I will never compare your pain to anyone else's.</li>
+      <li><span class="promise-no">06</span>I will celebrate your wins as loud as you'll let me.</li>
+      <li><span class="promise-no">07</span>I will sit in the hard silence with you, no need to fill it.</li>
+      <li><span class="promise-no">08</span>I will love you exactly as you are, always.</li>
+    </ol>
+  </div>
+
+</section>
+
+<!-- ============================================
+     CHAPTER 5 — ENDING (night sky)
+============================================ -->
+<section class="chapter chapter-5" id="chapter5">
+  <div class="night-sky" id="nightSky" aria-hidden="true"></div>
+
+  <div class="final-letter-block reveal">
+    <p class="section-eyebrow">💖 the final letter</p>
+    <p class="final-text">I love you so much mere baune<br>
+    Koi tere paas ho na ho<br>
+    me yahi hu tere paas<br>
+    kyuki tu mera pyara sa bauna h</p>
+  </div>
+
+  <div class="playlist-block reveal">
+    <p class="section-eyebrow">🎵 one last playlist</p>
+    <ol class="mixtape-list">
+      <li class="track"><span class="track-no">01</span><div class="track-info"><span class="track-name">Ye Tune Kya Kiya</span><span class="track-artist">Javed Bashir</span></div><a class="track-link" href="https://open.spotify.com/search/Ye%20Tune%20Kya%20Kiya%20Javed%20Bashir" target="_blank" rel="noopener">play ↗</a></li>
+      <li class="track"><span class="track-no">02</span><div class="track-info"><span class="track-name">Ishq</span><span class="track-artist">Anuv Jain</span></div><a class="track-link" href="https://open.spotify.com/search/Ishq%20Anuv%20Jain" target="_blank" rel="noopener">play ↗</a></li>
+      <li class="track"><span class="track-no">03</span><div class="track-info"><span class="track-name">Maand</span><span class="track-artist">Bayaan, Hasan Raheem</span></div><a class="track-link" href="https://open.spotify.com/search/Maand%20Bayaan%20Hasan%20Raheem" target="_blank" rel="noopener">play ↗</a></li>
+      <li class="track"><span class="track-no">04</span><div class="track-info"><span class="track-name">Kahani Suno 2.0</span><span class="track-artist">Kaifi Khalil</span></div><a class="track-link" href="https://open.spotify.com/search/Kahani%20Suno%202.0%20Kaifi%20Khalil" target="_blank" rel="noopener">play ↗</a></li>
+      <li class="track"><span class="track-no">05</span><div class="track-info"><span class="track-name">Jhol</span><span class="track-artist">Maanu, Annural Khalid</span></div><a class="track-link" href="https://open.spotify.com/search/Jhol%20Maanu%20Annural%20Khalid" target="_blank" rel="noopener">play ↗</a></li>
+      <li class="track"><span class="track-no">06</span><div class="track-info"><span class="track-name">Husn</span><span class="track-artist">Anuv Jain</span></div><a class="track-link" href="https://open.spotify.com/search/Husn%20Anuv%20Jain" target="_blank" rel="noopener">play ↗</a></li>
+      <li class="track"><span class="track-no">07</span><div class="track-info"><span class="track-name">Kabira</span><span class="track-artist">Yeh Jawaani Hai Deewani</span></div><a class="track-link" href="https://open.spotify.com/search/Kabira%20Yeh%20Jawaani%20Hai%20Deewani" target="_blank" rel="noopener">play ↗</a></li>
+      <li class="track"><span class="track-no">08</span><div class="track-info"><span class="track-name">Zinda</span><span class="track-artist">Bhaag Milkha Bhaag</span></div><a class="track-link" href="https://open.spotify.com/search/Zinda%20Bhaag%20Milkha%20Bhaag" target="_blank" rel="noopener">play ↗</a></li>
+      <li class="track"><span class="track-no">09</span><div class="track-info"><span class="track-name">Baarishein</span><span class="track-artist">Anuv Jain</span></div><a class="track-link" href="https://open.spotify.com/search/Baarishein%20Anuv%20Jain" target="_blank" rel="noopener">play ↗</a></li>
+      <li class="track"><span class="track-no">10</span><div class="track-info"><span class="track-name">Alag Aasmaan</span><span class="track-artist">Anuv Jain</span></div><a class="track-link" href="https://open.spotify.com/search/Alag%20Aasmaan%20Anuv%20Jain" target="_blank" rel="noopener">play ↗</a></li>
+      <li class="track"><span class="track-no">11</span><div class="track-info"><span class="track-name">Riha</span><span class="track-artist">Anuv Jain</span></div><a class="track-link" href="https://open.spotify.com/search/Riha%20Anuv%20Jain" target="_blank" rel="noopener">play ↗</a></li>
+      <li class="track"><span class="track-no">12</span><div class="track-info"><span class="track-name">Mishri</span><span class="track-artist">Anuv Jain</span></div><a class="track-link" href="https://open.spotify.com/search/Mishri%20Anuv%20Jain" target="_blank" rel="noopener">play ↗</a></li>
+      <li class="track"><span class="track-no">13</span><div class="track-info"><span class="track-name">Gul</span><span class="track-artist">Anuv Jain</span></div><a class="track-link" href="https://open.spotify.com/search/Gul%20Anuv%20Jain" target="_blank" rel="noopener">play ↗</a></li>
+    </ol>
+  </div>
+
+  <footer class="footer reveal">
+    <p class="footer-line">wherever you are in all of this, I'm right there with you.</p>
+    <p class="footer-sign">— your best friend, still and always</p>
+  </footer>
+</section>
+
+<!-- ============================================
+     LETTER MODAL
+============================================ -->
+<div class="note-modal" id="noteModal">
+  <div class="note-modal-card">
+    <button class="note-modal-close" id="noteModalClose" aria-label="Close">✕</button>
+    <p class="note-modal-text" id="noteModalText"></p>
+  </div>
+</div>
+
+<!-- ============================================
+     WATER REMINDER TOAST
+============================================ -->
+<div class="toast" id="waterToast">
+  <span>💧 hey — drink some water</span>
+  <button id="waterToastClose" aria-label="Dismiss">✕</button>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

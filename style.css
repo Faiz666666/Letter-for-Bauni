@@ -1,0 +1,857 @@
+/* =========================================
+   RESET & BASE STYLES
+========================================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+/* =========================================
+   DESIGN TOKENS & COLOR PALETTE
+========================================= */
+:root {
+  --bg-deep: #1b1b36;
+  --bg-main: #2b2a52;
+  --bg-soft: #383663;
+  --card-bg: rgba(255, 255, 255, 0.06);
+  --card-border: rgba(255, 255, 255, 0.12);
+  
+  --pink-accent: #f4b6c2;
+  --rose-glow: #e8a5b8;
+  --lavender: #c3b1e1;
+  --text-light: #f7f7fc;
+  --text-muted: #b8b7d4;
+  
+  --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.25);
+  --shadow-hover: 0 15px 35px rgba(0, 0, 0, 0.35);
+
+  --font-display: 'Playfair Display', serif;
+  --font-hand: 'Patrick Hand', cursive;
+  --font-body: 'Nunito', sans-serif;
+}
+
+body {
+  background-color: var(--bg-main);
+  color: var(--text-light);
+  font-family: var(--font-body);
+  font-weight: 400;
+  line-height: 1.7;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* =========================================
+   TYPOGRAPHY & SECTION HEADINGS
+========================================= */
+.chapter {
+  position: relative;
+  min-height: 100vh;
+  padding: 100px 24px;
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+
+.chapter-heading {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.section-eyebrow {
+  font-family: var(--font-hand);
+  font-size: 22px;
+  color: var(--pink-accent);
+  letter-spacing: 1px;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: 38px;
+  font-weight: 600;
+  color: var(--text-light);
+  margin: 8px 0 12px;
+}
+
+.section-sub {
+  color: var(--text-muted);
+  font-size: 16px;
+}
+
+/* =========================================
+   LOADER
+========================================= */
+.loader {
+  position: fixed;
+  inset: 0;
+  background: var(--bg-deep);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+.loader.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.loader-inner {
+  text-align: center;
+}
+
+.loader-flower {
+  font-size: 48px;
+  display: inline-block;
+  animation: pulse 1.8s ease-in-out infinite;
+}
+
+.loader p {
+  font-family: var(--font-hand);
+  font-size: 22px;
+  color: var(--pink-accent);
+  margin-top: 12px;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+/* =========================================
+   MUSIC CONTROLS
+========================================= */
+.music-toggle {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  z-index: 90;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--card-border);
+  box-shadow: var(--shadow-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.music-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 16px;
+}
+
+.music-bars span {
+  width: 3px;
+  background: var(--pink-accent);
+  border-radius: 2px;
+  height: 6px;
+  transition: height 0.2s ease;
+}
+
+.music-toggle.playing .music-bars span:nth-child(1) { animation: bar 1s ease-in-out infinite; }
+.music-toggle.playing .music-bars span:nth-child(2) { animation: bar 1s ease-in-out infinite 0.2s; }
+.music-toggle.playing .music-bars span:nth-child(3) { animation: bar 1s ease-in-out infinite 0.4s; }
+
+@keyframes bar {
+  0%, 100% { height: 6px; }
+  50% { height: 16px; }
+}
+
+.music-prompt {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 85;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+  padding: 10px 24px;
+  border-radius: 30px;
+  border: 1px solid var(--card-border);
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+.music-prompt p {
+  font-family: var(--font-hand);
+  font-size: 18px;
+  color: var(--pink-accent);
+}
+
+/* =========================================
+   EMERGENCY BUTTON & MODAL
+========================================= */
+.emergency-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 90;
+  background: rgba(232, 165, 184, 0.15);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--rose-glow);
+  color: var(--pink-accent);
+  padding: 10px 18px;
+  border-radius: 25px;
+  font-family: var(--font-hand);
+  font-size: 18px;
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.emergency-btn:hover {
+  transform: translateY(-2px);
+  background: rgba(232, 165, 184, 0.25);
+}
+
+.emergency-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(15, 14, 30, 0.75);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.emergency-modal.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.emergency-card {
+  position: relative;
+  max-width: 500px;
+  width: 100%;
+  background: #242242;
+  border: 1px solid var(--card-border);
+  border-radius: 20px;
+  padding: 36px 30px;
+  box-shadow: var(--shadow-hover);
+}
+
+.emergency-close {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  color: var(--text-muted);
+  font-size: 20px;
+}
+
+.emergency-title {
+  font-family: var(--font-display);
+  font-size: 26px;
+  color: var(--pink-accent);
+  margin-bottom: 16px;
+}
+
+.emergency-text {
+  font-size: 16px;
+  color: var(--text-light);
+  margin-bottom: 14px;
+}
+
+.emergency-note {
+  font-size: 13px;
+  color: var(--text-muted);
+  border-top: 1px solid var(--card-border);
+  padding-top: 14px;
+  margin-top: 16px;
+}
+
+/* =========================================
+   CHAPTER 1 — HERO
+========================================= */
+.chapter-1 {
+  text-align: center;
+}
+
+.dawn-glow {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, rgba(244, 182, 194, 0.15) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.hero-eyebrow {
+  font-family: var(--font-hand);
+  font-size: 24px;
+  color: var(--pink-accent);
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-size: 64px;
+  margin: 10px 0 20px;
+  color: var(--text-light);
+}
+
+.hero-text {
+  max-width: 580px;
+  margin: 0 auto 40px;
+  font-size: 18px;
+  color: var(--text-muted);
+}
+
+.scroll-cue {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-hand);
+  font-size: 20px;
+  color: var(--pink-accent);
+  transition: transform 0.2s ease;
+}
+
+.scroll-cue:hover {
+  transform: translateY(4px);
+}
+
+.scroll-arrow {
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(6px); }
+  60% { transform: translateY(3px); }
+}
+
+/* =========================================
+   CHAPTER 2 — LETTERS & KINDNESS
+========================================= */
+.envelope-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+  width: 100%;
+}
+
+.envelope {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  backdrop-filter: blur(5px);
+  border-radius: 16px;
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  text-align: center;
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.envelope:hover {
+  transform: translateY(-5px);
+  border-color: rgba(244, 182, 194, 0.4);
+  box-shadow: var(--shadow-hover);
+}
+
+.seal {
+  font-size: 22px;
+}
+
+.envelope-label {
+  font-family: var(--font-hand);
+  font-size: 19px;
+  color: var(--text-light);
+  line-height: 1.3;
+}
+
+.kindness-block {
+  margin-top: 80px;
+  width: 100%;
+  text-align: center;
+}
+
+.kindness-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.kindness-note {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--card-border);
+  padding: 10px 18px;
+  border-radius: 30px;
+  font-family: var(--font-hand);
+  font-size: 18px;
+  color: var(--lavender);
+}
+
+/* =========================================
+   CHAPTER 3 — COMFORT (JAR, BREATHE, MEADOW)
+========================================= */
+.smile-jar-block, .breathe-block, .meadow-block {
+  width: 100%;
+  margin-bottom: 70px;
+  text-align: center;
+}
+
+.smile-jar {
+  font-size: 72px;
+  margin: 20px 0 10px;
+  transition: transform 0.2s ease;
+}
+
+.smile-jar:hover {
+  transform: scale(1.1) rotate(-5deg);
+}
+
+.smile-jar-output {
+  font-family: var(--font-hand);
+  font-size: 22px;
+  color: var(--pink-accent);
+  max-width: 500px;
+  margin: 0 auto;
+  min-height: 60px;
+}
+
+.breathe-circle {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(244, 182, 194, 0.2), rgba(56, 54, 99, 0.4));
+  border: 2px solid var(--pink-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 30px auto 16px;
+  cursor: pointer;
+  transition: transform 4s ease-in-out;
+}
+
+.breathe-circle.expanding {
+  transform: scale(1.4);
+}
+
+.breathe-circle.contracting {
+  transform: scale(1);
+}
+
+#breatheText {
+  font-family: var(--font-hand);
+  font-size: 22px;
+  color: var(--text-light);
+}
+
+.breathe-caption {
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.meadow {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+/* =========================================
+   CHAPTER 4 — SCRAPBOOK, TIMELINE, REASONS
+========================================= */
+.scrapbook-block, .timeline-block, .reasons-block, .promises-block {
+  width: 100%;
+  margin-bottom: 70px;
+}
+
+.scrapbook-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 24px;
+  margin-top: 30px;
+}
+
+.polaroid {
+  background: #fff;
+  padding: 16px 16px 24px;
+  border-radius: 4px;
+  box-shadow: var(--shadow-soft);
+  transform: rotate(-2deg);
+  transition: transform 0.3s ease;
+  min-height: 200px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.polaroid:nth-child(even) {
+  transform: rotate(2deg);
+}
+
+.polaroid:hover {
+  transform: scale(1.05) rotate(0deg);
+  z-index: 5;
+}
+
+.polaroid-caption {
+  font-family: var(--font-hand);
+  font-size: 18px;
+  color: #333;
+  text-align: center;
+}
+
+.timeline {
+  position: relative;
+  max-width: 650px;
+  margin: 30px auto 0;
+  text-align: left;
+  border-left: 2px solid var(--card-border);
+  padding-left: 24px;
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: -31px;
+  top: 4px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--pink-accent);
+}
+
+.timeline-content h3 {
+  font-family: var(--font-display);
+  font-size: 20px;
+  color: var(--pink-accent);
+  margin-bottom: 6px;
+}
+
+.timeline-content p {
+  color: var(--text-muted);
+  font-size: 15px;
+}
+
+.reasons-list {
+  text-align: left;
+  max-width: 600px;
+  margin: 30px auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.reasons-list li {
+  position: relative;
+  padding-left: 28px;
+  color: var(--text-light);
+  font-size: 16px;
+}
+
+.reasons-list li::before {
+  content: '🌸';
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 14px;
+}
+
+.promises-list {
+  text-align: left;
+  max-width: 600px;
+  margin: 30px auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.promises-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  color: var(--text-light);
+  font-size: 16px;
+}
+
+.promise-no {
+  font-family: var(--font-hand);
+  font-size: 20px;
+  color: var(--pink-accent);
+}
+
+/* =========================================
+   CHAPTER 5 — NIGHT SKY, FINAL LETTER, PLAYLIST
+========================================= */
+.chapter-5 {
+  background: var(--bg-deep);
+  max-width: 100%;
+  width: 100%;
+}
+
+.night-sky {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at bottom, #1b1b3a 0%, #0c0b1e 100%);
+  z-index: -1;
+}
+
+.final-letter-block {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 60px;
+}
+
+.final-text {
+  font-family: var(--font-hand);
+  font-size: 26px;
+  color: var(--pink-accent);
+  line-height: 1.6;
+  margin-top: 20px;
+}
+
+.playlist-block {
+  max-width: 550px;
+  width: 100%;
+  margin: 0 auto 60px;
+}
+
+.mixtape-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.track {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  padding: 12px 20px;
+  border-radius: 12px;
+}
+
+.track-no {
+  font-family: var(--font-hand);
+  color: var(--pink-accent);
+  font-size: 18px;
+  width: 30px;
+}
+
+.track-info {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  flex: 1;
+}
+
+.track-name {
+  font-weight: 600;
+  color: var(--text-light);
+}
+
+.track-artist {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.track-link {
+  font-family: var(--font-hand);
+  color: var(--pink-accent);
+  font-size: 16px;
+  transition: opacity 0.2s ease;
+}
+
+.track-link:hover {
+  opacity: 0.7;
+}
+
+/* =========================================
+   NOTE MODAL
+========================================= */
+.note-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(15, 14, 30, 0.75);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.note-modal.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.note-modal-card {
+  position: relative;
+  max-width: 520px;
+  width: 100%;
+  background: #242242;
+  border: 1px solid var(--card-border);
+  border-radius: 20px;
+  padding: 40px 30px;
+  box-shadow: var(--shadow-hover);
+  text-align: center;
+}
+
+.note-modal-close {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  color: var(--text-muted);
+  font-size: 20px;
+}
+
+.note-modal-text {
+  font-family: var(--font-hand);
+  font-size: 24px;
+  color: var(--text-light);
+  line-height: 1.5;
+}
+
+/* =========================================
+   WATER REMINDER TOAST
+========================================= */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  z-index: 90;
+  background: var(--bg-soft);
+  border: 1px solid var(--card-border);
+  border-radius: 30px;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-hand);
+  font-size: 18px;
+  color: var(--text-light);
+  box-shadow: var(--shadow-soft);
+  transform: translateY(100px);
+  opacity: 0;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.toast.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.toast button {
+  color: var(--text-muted);
+  font-size: 16px;
+}
+
+/* =========================================
+   FOOTER
+========================================= */
+.footer {
+  text-align: center;
+  padding-top: 40px;
+  border-top: 1px solid var(--card-border);
+  width: 100%;
+}
+
+.footer-line {
+  color: var(--text-muted);
+  font-size: 15px;
+}
+
+.footer-sign {
+  font-family: var(--font-hand);
+  font-size: 22px;
+  color: var(--pink-accent);
+  margin-top: 6px;
+}
+
+/* =========================================
+   RESPONSIVE DESIGN
+========================================= */
+@media (max-width: 640px) {
+  .hero-title {
+    font-size: 42px;
+  }
+  
+  .section-title {
+    font-size: 28px;
+  }
+
+  .chapter {
+    padding: 60px 16px;
+  }
+
+  .envelope-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .scrapbook-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .music-toggle {
+    top: 16px;
+    right: 16px;
+  }
+
+  .emergency-btn {
+    bottom: 16px;
+    right: 16px;
+  }
+
+  .toast {
+    bottom: 16px;
+    left: 16px;
+  }
+}
