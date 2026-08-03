@@ -6,7 +6,7 @@
 <meta name="description" content="A little corner of the internet made for Aditi.">
 <meta name="theme-color" content="#2b2a52">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌸</text></svg>">
-<title>Mere Baune k Liye..</title>
+<title>For Aditi</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,7 +14,13 @@
 
 <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="night-theme">
+
+<!-- Ambient Soft Animations Canvas (Petals & Sparkles) -->
+<canvas id="ambientCanvas" class="ambient-canvas"></canvas>
+
+<!-- Theme Toggle (Day/Night Mode) -->
+<button class="theme-toggle" id="themeToggle" aria-label="Toggle Day or Night Mode">🌙</button>
 
 <!-- ============================================
      LOADER
@@ -68,15 +74,15 @@
   <div class="dawn-glow" aria-hidden="true"></div>
 
   <div class="hero reveal">
-    <p class="hero-eyebrow">Sirf or sirf tere liye meri cutu</p>
-    <h1 class="hero-title">Oyee Baunee,</h1>
+    <p class="hero-eyebrow">a whole website, just for you</p>
+    <h1 class="hero-title">hey Aditi,</h1>
     <p class="hero-text">
       I made you something bigger this time. Letters, notes, a jar full
       of silly memories, a whole night sky waiting at the end of it.
       Take your time. There's no rush, and there's no wrong way through it.
     </p>
     <a href="#chapter2" class="scroll-cue">
-      <span>Yaha Click kr bhadwi</span>
+      <span>start reading</span>
       <span class="scroll-arrow">↓</span>
     </a>
   </div>
@@ -89,12 +95,11 @@
 
   <div class="chapter-heading reveal">
     <p class="section-eyebrow">chapter two</p>
-    <h2 class="section-title">Me online nhi hu or situtation jesi bhi h vesi situation k liye note open krle.....</h2>
-    <p class="section-sub">30 of them. Open whichever one finds you today.(Angreji zyada hogyi na?)</p>
+    <h2 class="section-title">letters, for whenever you need one</h2>
+    <p class="section-sub">30 of them. Open whichever one finds you today.</p>
   </div>
 
   <div class="envelope-grid reveal" id="letterGrid">
-    <!-- 30 letters injected via data-message, written directly -->
     <button class="envelope" data-message="For one second this morning, you forgot. Then it came back. That half-second of forgetting is not nothing — it's the first proof that your mind knows how to rest from this, even briefly.">
       <span class="seal">✉</span><span class="envelope-label">when you wake up and for a second forget</span>
     </button>
@@ -227,11 +232,25 @@
     <p class="breathe-caption">tap it, and follow it for a minute</p>
   </div>
 
+  <!-- WRITE IT, DON'T SEND IT JOURNAL -->
+  <div class="journal-block reveal">
+    <p class="section-eyebrow">✍️ write it, don't send it</p>
+    <p class="section-sub">type out whatever is on your heart. say everything. keep it local or wipe it clean.</p>
+    <div class="journal-card">
+      <textarea id="journalInput" placeholder="write whatever you want to get out of your head..." rows="6"></textarea>
+      <div class="journal-actions">
+        <button id="journalSaveBtn" class="journal-btn save">save locally</button>
+        <button id="journalDeleteBtn" class="journal-btn delete">let it go (delete)</button>
+      </div>
+      <p id="journalStatus" class="journal-status"></p>
+    </div>
+  </div>
+
   <!-- 100 TINY NOTES -->
   <div class="meadow-block reveal">
     <p class="section-eyebrow">🌼 100 tiny notes</p>
     <p class="section-sub">a whole field of small reminders, read as many as you want</p>
-    <div class="meadow" id="meadowNotes"><!-- populated by script.js --></div>
+    <div class="meadow" id="meadowNotes"></div>
   </div>
 
 </section>
@@ -334,32 +353,128 @@
      CHAPTER 5 — ENDING (night sky)
 ============================================ -->
 <section class="chapter chapter-5" id="chapter5">
-  <div class="night-sky" id="nightSky" aria-hidden="true"></div>
+  <div class="night-sky" id="nightSky" aria-hidden="true">
+    <!-- Interactive Ending Stars -->
+    <div class="star-container" id="starContainer"></div>
+  </div>
 
   <div class="final-letter-block reveal">
     <p class="section-eyebrow">💖 the final letter</p>
     <p class="final-text">I love you so much mere baune<br>
     Koi tere paas ho na ho<br>
     me yahi hu tere paas<br>
-    kyuki tu mera pyara sa bauna h aur me tujhse bohot pyar karta hu....</p>
+    kyuki tu mera pyara sa bauna h</p>
   </div>
 
+  <!-- PLAYLIST SECTION -->
   <div class="playlist-block reveal">
-    <p class="section-eyebrow">🎵 one last playlist(Spotify ki links hain ye vese)</p>
+    <p class="section-eyebrow">🎵 one last playlist</p>
+    <p class="section-sub">comforting tracks to listen to (opens directly on Spotify)</p>
     <ol class="mixtape-list">
-      <li class="track"><span class="track-no">01</span><div class="track-info"><span class="track-name">Ye Tune Kya Kiya</span><span class="track-artist">Javed Bashir</span></div><a class="track-link" href="https://open.spotify.com/search/Ye%20Tune%20Kya%20Kiya%20Javed%20Bashir" target="_blank" rel="noopener">play ↗</a></li>
-      <li class="track"><span class="track-no">02</span><div class="track-info"><span class="track-name">Ishq</span><span class="track-artist">Anuv Jain</span></div><a class="track-link" href="https://open.spotify.com/search/Ishq%20Anuv%20Jain" target="_blank" rel="noopener">play ↗</a></li>
-      <li class="track"><span class="track-no">03</span><div class="track-info"><span class="track-name">Maand</span><span class="track-artist">Bayaan, Hasan Raheem</span></div><a class="track-link" href="https://open.spotify.com/search/Maand%20Bayaan%20Hasan%20Raheem" target="_blank" rel="noopener">play ↗</a></li>
-      <li class="track"><span class="track-no">04</span><div class="track-info"><span class="track-name">Kahani Suno 2.0</span><span class="track-artist">Kaifi Khalil</span></div><a class="track-link" href="https://open.spotify.com/search/Kahani%20Suno%202.0%20Kaifi%20Khalil" target="_blank" rel="noopener">play ↗</a></li>
-      <li class="track"><span class="track-no">05</span><div class="track-info"><span class="track-name">Jhol</span><span class="track-artist">Maanu, Annural Khalid</span></div><a class="track-link" href="https://open.spotify.com/search/Jhol%20Maanu%20Annural%20Khalid" target="_blank" rel="noopener">play ↗</a></li>
-      <li class="track"><span class="track-no">06</span><div class="track-info"><span class="track-name">Husn</span><span class="track-artist">Anuv Jain</span></div><a class="track-link" href="https://open.spotify.com/search/Husn%20Anuv%20Jain" target="_blank" rel="noopener">play ↗</a></li>
-      <li class="track"><span class="track-no">07</span><div class="track-info"><span class="track-name">Kabira</span><span class="track-artist">Yeh Jawaani Hai Deewani</span></div><a class="track-link" href="https://open.spotify.com/search/Kabira%20Yeh%20Jawaani%20Hai%20Deewani" target="_blank" rel="noopener">play ↗</a></li>
-      <li class="track"><span class="track-no">08</span><div class="track-info"><span class="track-name">Zinda</span><span class="track-artist">Bhaag Milkha Bhaag</span></div><a class="track-link" href="https://open.spotify.com/search/Zinda%20Bhaag%20Milkha%20Bhaag" target="_blank" rel="noopener">play ↗</a></li>
-      <li class="track"><span class="track-no">09</span><div class="track-info"><span class="track-name">Baarishein</span><span class="track-artist">Anuv Jain</span></div><a class="track-link" href="https://open.spotify.com/search/Baarishein%20Anuv%20Jain" target="_blank" rel="noopener">play ↗</a></li>
-      <li class="track"><span class="track-no">10</span><div class="track-info"><span class="track-name">Alag Aasmaan</span><span class="track-artist">Anuv Jain</span></div><a class="track-link" href="https://open.spotify.com/search/Alag%20Aasmaan%20Anuv%20Jain" target="_blank" rel="noopener">play ↗</a></li>
-      <li class="track"><span class="track-no">11</span><div class="track-info"><span class="track-name">Riha</span><span class="track-artist">Anuv Jain</span></div><a class="track-link" href="https://open.spotify.com/search/Riha%20Anuv%20Jain" target="_blank" rel="noopener">play ↗</a></li>
-      <li class="track"><span class="track-no">12</span><div class="track-info"><span class="track-name">Mishri</span><span class="track-artist">Anuv Jain</span></div><a class="track-link" href="https://open.spotify.com/search/Mishri%20Anuv%20Jain" target="_blank" rel="noopener">play ↗</a></li>
-      <li class="track"><span class="track-no">13</span><div class="track-info"><span class="track-name">Gul</span><span class="track-artist">Anuv Jain</span></div><a class="track-link" href="https://open.spotify.com/search/Gul%20Anuv%20Jain" target="_blank" rel="noopener">play ↗</a></li>
+      <li class="track">
+        <span class="track-no">01</span>
+        <div class="track-info">
+          <span class="track-name">Ye Tune Kya Kiya</span>
+          <span class="track-artist">Javed Bashir</span>
+        </div>
+        <a class="track-link" href="https://open.spotify.com/search/Ye%20Tune%20Kya%20Kiya%20Javed%20Bashir" target="_blank" rel="noopener">listen ↗</a>
+      </li>
+      <li class="track">
+        <span class="track-no">02</span>
+        <div class="track-info">
+          <span class="track-name">Ishq</span>
+          <span class="track-artist">Anuv Jain</span>
+        </div>
+        <a class="track-link" href="https://open.spotify.com/search/Ishq%20Anuv%20Jain" target="_blank" rel="noopener">listen ↗</a>
+      </li>
+      <li class="track">
+        <span class="track-no">03</span>
+        <div class="track-info">
+          <span class="track-name">Maand</span>
+          <span class="track-artist">Bayaan, Hasan Raheem</span>
+        </div>
+        <a class="track-link" href="https://open.spotify.com/search/Maand%20Bayaan%20Hasan%20Raheem" target="_blank" rel="noopener">listen ↗</a>
+      </li>
+      <li class="track">
+        <span class="track-no">04</span>
+        <div class="track-info">
+          <span class="track-name">Kahani Suno 2.0</span>
+          <span class="track-artist">Kaifi Khalil</span>
+        </div>
+        <a class="track-link" href="https://open.spotify.com/search/Kahani%20Suno%202.0%20Kaifi%20Khalil" target="_blank" rel="noopener">listen ↗</a>
+      </li>
+      <li class="track">
+        <span class="track-no">05</span>
+        <div class="track-info">
+          <span class="track-name">Jhol</span>
+          <span class="track-artist">Maanu, Annural Khalid</span>
+        </div>
+        <a class="track-link" href="https://open.spotify.com/search/Jhol%20Maanu%20Annural%20Khalid" target="_blank" rel="noopener">listen ↗</a>
+      </li>
+      <li class="track">
+        <span class="track-no">06</span>
+        <div class="track-info">
+          <span class="track-name">Husn</span>
+          <span class="track-artist">Anuv Jain</span>
+        </div>
+        <a class="track-link" href="https://open.spotify.com/search/Husn%20Anuv%20Jain" target="_blank" rel="noopener">listen ↗</a>
+      </li>
+      <li class="track">
+        <span class="track-no">07</span>
+        <div class="track-info">
+          <span class="track-name">Kabira</span>
+          <span class="track-artist">Yeh Jawaani Hai Deewani</span>
+        </div>
+        <a class="track-link" href="https://open.spotify.com/search/Kabira%20Yeh%20Jawaani%20Hai%20Deewani" target="_blank" rel="noopener">listen ↗</a>
+      </li>
+      <li class="track">
+        <span class="track-no">08</span>
+        <div class="track-info">
+          <span class="track-name">Zinda</span>
+          <span class="track-artist">Bhaag Milkha Bhaag</span>
+        </div>
+        <a class="track-link" href="https://open.spotify.com/search/Zinda%20Bhaag%20Milkha%20Bhaag" target="_blank" rel="noopener">listen ↗</a>
+      </li>
+      <li class="track">
+        <span class="track-no">09</span>
+        <div class="track-info">
+          <span class="track-name">Baarishein</span>
+          <span class="track-artist">Anuv Jain</span>
+        </div>
+        <a class="track-link" href="https://open.spotify.com/search/Baarishein%20Anuv%20Jain" target="_blank" rel="noopener">listen ↗</a>
+      </li>
+      <li class="track">
+        <span class="track-no">10</span>
+        <div class="track-info">
+          <span class="track-name">Alag Aasmaan</span>
+          <span class="track-artist">Anuv Jain</span>
+        </div>
+        <a class="track-link" href="https://open.spotify.com/search/Alag%20Aasmaan%20Anuv%20Jain" target="_blank" rel="noopener">listen ↗</a>
+      </li>
+      <li class="track">
+        <span class="track-no">11</span>
+        <div class="track-info">
+          <span class="track-name">Riha</span>
+          <span class="track-artist">Anuv Jain</span>
+        </div>
+        <a class="track-link" href="https://open.spotify.com/search/Riha%20Anuv%20Jain" target="_blank" rel="noopener">listen ↗</a>
+      </li>
+      <li class="track">
+        <span class="track-no">12</span>
+        <div class="track-info">
+          <span class="track-name">Mishri</span>
+          <span class="track-artist">Anuv Jain</span>
+        </div>
+        <a class="track-link" href="https://open.spotify.com/search/Mishri%20Anuv%20Jain" target="_blank" rel="noopener">listen ↗</a>
+      </li>
+      <li class="track">
+        <span class="track-no">13</span>
+        <div class="track-info">
+          <span class="track-name">Gul</span>
+          <span class="track-artist">Anuv Jain</span>
+        </div>
+        <a class="track-link" href="https://open.spotify.com/search/Gul%20Anuv%20Jain" target="_blank" rel="noopener">listen ↗</a>
+      </li>
     </ol>
   </div>
 
@@ -390,4 +505,3 @@
 <script src="script.js"></script>
 </body>
 </html>
-
