@@ -6,9 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (loader) {
     window.addEventListener("load", () => {
       loader.classList.add("hidden");
-      setTimeout(() => {
-        loader.style.display = "none";
-      }, 600);
+      setTimeout(() => { loader.style.display = "none"; }, 600);
     });
 
     // Fallback: Force hide loader after 2.5 seconds if window 'load' event hangs
@@ -21,7 +19,81 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // =========================================
-  // 2. AUDIO & MUSIC PROMPT CONTROLS
+  // 2. DAY / NIGHT THEME TOGGLE
+  // =========================================
+  const themeToggle = document.getElementById("themeToggle");
+  const body = document.body;
+
+  if (themeToggle) {
+    themeToggle.addEventListener("click", () => {
+      if (body.classList.contains("night-theme")) {
+        body.classList.remove("night-theme");
+        body.classList.add("day-theme");
+        themeToggle.textContent = "☀️";
+      } else {
+        body.classList.remove("day-theme");
+        body.classList.add("night-theme");
+        themeToggle.textContent = "🌙";
+      }
+    });
+  }
+
+  // =========================================
+  // 3. AMBIENT PARTICLES CANVAS (Petals & Sparkles)
+  // =========================================
+  const canvas = document.getElementById("ambientCanvas");
+  if (canvas) {
+    const ctx = canvas.getContext("2d");
+    let width = (canvas.width = window.innerWidth);
+    let height = (canvas.height = window.innerHeight);
+
+    window.addEventListener("resize", () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    });
+
+    const particles = Array.from({ length: 35 }, () => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      size: Math.random() * 4 + 2,
+      speedY: Math.random() * 0.8 + 0.3,
+      speedX: Math.random() * 0.5 - 0.25,
+      opacity: Math.random() * 0.5 + 0.3,
+      isPetal: Math.random() > 0.5
+    }));
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, width, height);
+
+      particles.forEach((p) => {
+        p.y += p.speedY;
+        p.x += p.speedX;
+
+        if (p.y > height) {
+          p.y = -10;
+          p.x = Math.random() * width;
+        }
+
+        ctx.beginPath();
+        if (p.isPetal) {
+          // Soft pink sakura petal
+          ctx.fillStyle = `rgba(244, 182, 194, ${p.opacity})`;
+          ctx.ellipse(p.x, p.y, p.size * 1.5, p.size, Math.PI / 4, 0, Math.PI * 2);
+        } else {
+          // Gentle glowing sparkle
+          ctx.fillStyle = `rgba(255, 255, 255, ${p.opacity})`;
+          ctx.arc(p.x, p.y, p.size * 0.6, 0, Math.PI * 2);
+        }
+        ctx.fill();
+      });
+
+      requestAnimationFrame(animateParticles);
+    }
+    animateParticles();
+  }
+
+  // =========================================
+  // 4. AUDIO & MUSIC CONTROLS
   // =========================================
   const bgAudio = document.getElementById("bgAudio");
   const musicToggle = document.getElementById("musicToggle");
@@ -29,11 +101,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (bgAudio && musicToggle && musicPrompt) {
     let hasInteracted = false;
-
-    // Show prompt on initial load
     musicPrompt.classList.add("visible");
 
-    // Play music function
     const startAudio = () => {
       bgAudio.play().then(() => {
         musicToggle.classList.add("playing");
@@ -43,7 +112,6 @@ document.addEventListener("DOMContentLoaded", () => {
       hasInteracted = true;
     };
 
-    // Global listener for first click/tap to trigger background audio
     const handleFirstInteraction = () => {
       if (!hasInteracted) {
         startAudio();
@@ -52,9 +120,8 @@ document.addEventListener("DOMContentLoaded", () => {
     };
     document.addEventListener("click", handleFirstInteraction);
 
-    // Explicit music toggle button click
     musicToggle.addEventListener("click", (e) => {
-      e.stopPropagation(); // prevent triggering top-level document click twice
+      e.stopPropagation();
       if (bgAudio.paused) {
         startAudio();
       } else {
@@ -66,31 +133,22 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // =========================================
-  // 3. EMERGENCY MODAL
+  // 5. EMERGENCY MODAL
   // =========================================
   const emergencyBtn = document.getElementById("emergencyBtn");
   const emergencyModal = document.getElementById("emergencyModal");
   const emergencyClose = document.getElementById("emergencyClose");
 
   if (emergencyBtn && emergencyModal && emergencyClose) {
-    emergencyBtn.addEventListener("click", () => {
-      emergencyModal.classList.add("active");
-    });
-
-    emergencyClose.addEventListener("click", () => {
-      emergencyModal.classList.remove("active");
-    });
-
-    // Close on backdrop click
+    emergencyBtn.addEventListener("click", () => emergencyModal.classList.add("active"));
+    emergencyClose.addEventListener("click", () => emergencyModal.classList.remove("active"));
     emergencyModal.addEventListener("click", (e) => {
-      if (e.target === emergencyModal) {
-        emergencyModal.classList.remove("active");
-      }
+      if (e.target === emergencyModal) emergencyModal.classList.remove("active");
     });
   }
 
   // =========================================
-  // 4. CHAPTER 2 — LETTERS MODAL
+  // 6. CHAPTER 2 — LETTERS MODAL
   // =========================================
   const noteModal = document.getElementById("noteModal");
   const noteModalText = document.getElementById("noteModalText");
@@ -108,19 +166,14 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
 
-    noteModalClose.addEventListener("click", () => {
-      noteModal.classList.remove("active");
-    });
-
+    noteModalClose.addEventListener("click", () => noteModal.classList.remove("active"));
     noteModal.addEventListener("click", (e) => {
-      if (e.target === noteModal) {
-        noteModal.classList.remove("active");
-      }
+      if (e.target === noteModal) noteModal.classList.remove("active");
     });
   }
 
   // =========================================
-  // 5. CHAPTER 3 — SMILE JAR
+  // 7. CHAPTER 3 — SMILE JAR
   // =========================================
   const smileJar = document.getElementById("smileJar");
   const smileJarOutput = document.getElementById("smileJarOutput");
@@ -140,8 +193,6 @@ document.addEventListener("DOMContentLoaded", () => {
   if (smileJar && smileJarOutput) {
     smileJar.addEventListener("click", () => {
       const randomIndex = Math.floor(Math.random() * smileMessages.length);
-      
-      // Gentle bounce animation on click
       smileJar.style.transform = "scale(0.85)";
       setTimeout(() => {
         smileJar.style.transform = "scale(1)";
@@ -151,7 +202,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // =========================================
-  // 6. CHAPTER 3 — GUIDED BREATHING CIRCLE
+  // 8. CHAPTER 3 — GUIDED BREATHING
   // =========================================
   const breatheCircle = document.getElementById("breatheCircle");
   const breatheText = document.getElementById("breatheText");
@@ -161,7 +212,6 @@ document.addEventListener("DOMContentLoaded", () => {
   if (breatheCircle && breatheText) {
     breatheCircle.addEventListener("click", () => {
       if (isBreathing) {
-        // Stop exercise
         clearInterval(breathingInterval);
         isBreathing = false;
         breatheCircle.classList.remove("expanding", "contracting");
@@ -170,7 +220,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       isBreathing = true;
-      let cycle = 0; // 0 = In, 1 = Hold, 2 = Out, 3 = Hold
+      let cycle = 0;
 
       const runBreathingCycle = () => {
         if (cycle === 0) {
@@ -190,15 +240,47 @@ document.addEventListener("DOMContentLoaded", () => {
       };
 
       runBreathingCycle();
-      breathingInterval = setInterval(runBreathingCycle, 4000); // 4 seconds per step
+      breathingInterval = setInterval(runBreathingCycle, 4000);
     });
   }
 
   // =========================================
-  // 7. CHAPTER 3 — POPULATE 100 TINY NOTES
+  // 9. CHAPTER 3 — "WRITE IT, DON'T SEND IT" JOURNAL
+  // =========================================
+  const journalInput = document.getElementById("journalInput");
+  const journalSaveBtn = document.getElementById("journalSaveBtn");
+  const journalDeleteBtn = document.getElementById("journalDeleteBtn");
+  const journalStatus = document.getElementById("journalStatus");
+
+  if (journalInput && journalSaveBtn && journalDeleteBtn && journalStatus) {
+    // Load existing saved entry if present
+    const savedEntry = localStorage.getItem("aditi_journal_entry");
+    if (savedEntry) {
+      journalInput.value = savedEntry;
+      journalStatus.textContent = "loaded your previously saved note 💭";
+    }
+
+    journalSaveBtn.addEventListener("click", () => {
+      const text = journalInput.value.trim();
+      if (text) {
+        localStorage.setItem("aditi_journal_entry", text);
+        journalStatus.textContent = "saved safely in your browser ✨";
+      } else {
+        journalStatus.textContent = "nothing written to save yet!";
+      }
+    });
+
+    journalDeleteBtn.addEventListener("click", () => {
+      journalInput.value = "";
+      localStorage.removeItem("aditi_journal_entry");
+      journalStatus.textContent = "cleared! let it all go 🌸";
+    });
+  }
+
+  // =========================================
+  // 10. CHAPTER 3 — POPULATE 100 TINY NOTES
   // =========================================
   const meadowContainer = document.getElementById("meadowNotes");
-
   const tinyNotes = [
     "you matter", "take a breath", "proud of you", "one step at a time",
     "you are loved", "soft hearts win", "drink water", "let it go",
@@ -208,7 +290,6 @@ document.addEventListener("DOMContentLoaded", () => {
   ];
 
   if (meadowContainer) {
-    // Generate 100 notes by looping through the array items
     for (let i = 0; i < 100; i++) {
       const noteSpan = document.createElement("span");
       noteSpan.className = "kindness-note";
@@ -218,44 +299,57 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // =========================================
-  // 8. WATER REMINDER TOAST
+  // 11. CHAPTER 5 — INTERACTIVE NIGHT SKY STARS
+  // =========================================
+  const starContainer = document.getElementById("starContainer");
+  const starWords = [
+    "resilient", "loved", "bright", "worthy", "gentle",
+    "strong", "peaceful", "unbreakable", "hopeful", "beautiful"
+  ];
+
+  if (starContainer) {
+    for (let i = 0; i < 30; i++) {
+      const star = document.createElement("div");
+      star.className = "interactive-star";
+      star.innerHTML = "✨";
+
+      // Random position inside section
+      star.style.top = `${Math.random() * 85 + 5}%`;
+      star.style.left = `${Math.random() * 90 + 5}%`;
+
+      // Assign a word
+      const wordSpan = document.createElement("span");
+      wordSpan.className = "star-word";
+      wordSpan.textContent = starWords[i % starWords.length];
+      star.appendChild(wordSpan);
+
+      starContainer.appendChild(star);
+    }
+  }
+
+  // =========================================
+  // 12. WATER REMINDER TOAST
   // =========================================
   const waterToast = document.getElementById("waterToast");
   const waterToastClose = document.getElementById("waterToastClose");
 
   if (waterToast && waterToastClose) {
-    // Popup after 10 seconds on page
-    setTimeout(() => {
-      waterToast.classList.add("show");
-    }, 10000);
-
-    waterToastClose.addEventListener("click", () => {
-      waterToast.classList.remove("show");
-    });
+    setTimeout(() => { waterToast.classList.add("show"); }, 10000);
+    waterToastClose.addEventListener("click", () => { waterToast.classList.remove("show"); });
   }
 
   // =========================================
-  // 9. SCROLL REVEAL ANIMATIONS
+  // 13. SCROLL REVEAL ANIMATIONS
   // =========================================
   const reveals = document.querySelectorAll(".reveal");
-
-  const observerOptions = {
-    root: null,
-    threshold: 0.1,
-    rootMargin: "0px 0px -50px 0px"
-  };
-
   const revealOnScroll = new IntersectionObserver((entries, observer) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         entry.target.classList.add("active");
-        observer.unobserve(entry.target); // Reveal only once
+        observer.unobserve(entry.target);
       }
     });
-  }, observerOptions);
+  }, { root: null, threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
 
-  reveals.forEach((element) => {
-    revealOnScroll.observe(element);
-  });
+  reveals.forEach((element) => revealOnScroll.observe(element));
 });
-
