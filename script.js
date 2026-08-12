@@ -351,7 +351,7 @@ document.addEventListener("DOMContentLoaded", () => {
   reveals.forEach((element) => revealOnScroll.observe(element));
 });
 
-const PASSWORD = "Noor se bhara tara";
+const PASSWORD = "Bauni";
 const unlockButton = document.getElementById("unlockButton");
 const passwordInput = document.getElementById("passwordInput");
 const lockScreen = document.getElementById("lockScreen");
