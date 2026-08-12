@@ -350,51 +350,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
   reveals.forEach((element) => revealOnScroll.observe(element));
 });
+
 const PASSWORD = "Noor se bhara tara";
-
 const unlockButton = document.getElementById("unlockButton");
-
 const passwordInput = document.getElementById("passwordInput");
-
 const lockScreen = document.getElementById("lockScreen");
-
 const wrongPassword = document.getElementById("wrongPassword");
 
 unlockButton.onclick = () => {
-
-    if(passwordInput.value===PASSWORD){
-
+    if(passwordInput.value === PASSWORD){
         lockScreen.classList.add("lock-hidden");
-
-    }
-
-    else{
-
-        wrongPassword.textContent =
-        "Hmm... I don't think this letter belongs to you. 🤍";
-
-        document
-        .querySelector(".lock-card")
-        .classList.add("shake");
-
+    } else {
+        wrongPassword.textContent = "Hmm... I don't think this letter belongs to you. 🤍";
+        document.querySelector(".lock-card").classList.add("shake");
         setTimeout(()=>{
-
-            document
-            .querySelector(".lock-card")
-            .classList.remove("shake");
-
-        },350);
-
+            document.querySelector(".lock-card").classList.remove("shake");
+        }, 350);
     }
-
 };
 
-passwordInput.addEventListener("keydown",(e)=>{
-
-    if(e.key==="Enter"){
-
+passwordInput.addEventListener("keydown", (e) => {
+    if(e.key === "Enter"){
         unlockButton.click();
-
     }
-
 });
