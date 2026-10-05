@@ -1,7 +1,7 @@
 // =====================================
 // PERSONAL CONTENT  (edit freely)
 // =====================================
-const PREVIEW_MODE = true;               // set false when you deploy
+const PREVIEW_MODE = false;               // set false when you deploy
 const UNLOCK_AT = new Date('2026-12-02T00:00:00+05:30');
 
 const LETTER = "Happy birthday meri pyari si behn ki lodi aur merko ni pata me kya likhu but me likh rha hu kyuki me tere se boht pyar krta hu aur tu bss meri h or meri hi rehna baaki sab me sambhaal lunga mommy jiiii I love you soo much meri kuchupuchu me tere se kitna pyar krta hu bc merko khud ni pata merko bss itna pata h me boht zyada hi krta hu or humesha bss tere saath rehna chahta hu kuch bhi hojaye fir kyuki tu tu h yrr tu mera sab kuch h tu meri jaan h mera baccha h loml h meri detective kuchupuchu h, merko ni pata me or kya likhu bss yaad rakhna ki I LOVE YOU SO MUCH AND YOU ARE MY BABY";
