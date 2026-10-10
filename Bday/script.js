@@ -40,11 +40,12 @@ const FINAL_SURPRISE = '[YOUR FINAL SECRET MESSAGE GOES HERE]';
 // Mini-games (optional, not wired yet): quiz / memory / hearts / choose-one
 // Quiz format: {q, o:[options], a:indexOfCorrect}
 const quizzes = {
-  knowUs:[{q:'[QUESTION 1]',o:['[A]','[B]','[C]'],a:0},{q:'[QUESTION 2]',o:['[A]','[B]','[C]'],a:1},{q:'[QUESTION 3]',o:['[A]','[B]','[C]'],a:2}],
+  knowUs:[{q:'What was the first message that i sent you?',o:['Yoo, You Aditi?','Hello, are you Sarah's frnd','Hiii, You must be Sarah's frnd'],a:0},{q:'[QUESTION 2]',o:['[A]','[B]','[C]'],a:1},{q:'[QUESTION 3]',o:['[A]','[B]','[C]'],a:2}],
   memory:[{q:'[MEMORY QUESTION 1]',o:['[A]','[B]','[C]'],a:0},{q:'[MEMORY QUESTION 2]',o:['[A]','[B]','[C]'],a:1}],
   hearts:5,  // how many hidden hearts to scatter across the site
   chooseOne:[{a:'[OPTION A]',b:'[OPTION B]',reply:'[YOUR REACTION]'},{a:'[OPTION A]',b:'[OPTION B]',reply:'[YOUR REACTION]'}]
 };
+const SECRET_SITE_URL = 'https://faiz666666.github.io/Letter-for-Bauni/Bday/Secret/'; // opens in a new tab after the right answer
 const GAME_WIN = 'Okay detective, you really do know us.';
 // =====================================
 
@@ -96,7 +97,8 @@ function init(){
   const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.6});
   $$('.ln').forEach(l=>io.observe(l));
   // Secret question (answer lives only in config, never shown)
-  const check=()=>{const v=$('#ans').value.trim().toLowerCase().replace(/[^a-z ]/g,'');const ok=v===SECRET.question.toLowerCase();$('#res').textContent=ok?SECRET.right:SECRET.wrong;};
+  const check=()=>{const v=$('#ans').value.trim().toLowerCase().replace(/[^a-z ]/g,'');const ok=v===SECRET.question.toLowerCase();$('#res').textContent=ok?SECRET.right:SECRET.wrong;$('#door').hidden=!ok;if(ok)burst({clientX:innerWidth/2,clientY:innerHeight/2});};
+  $('#door').onclick=()=>/^https?:/.test(SECRET_SITE_URL)?window.open(SECRET_SITE_URL,'_blank','noopener'):toast('This door opens soon…');
   $('#go').onclick=check; $('#ans').onkeydown=e=>{if(e.key==='Enter')check()};
   // Easter eggs
   eggs.forEach(g=>{const s=document.getElementById(g.sec);if(!s)return;const b=document.createElement('button');b.className='egg';b.textContent=g.ch;b.setAttribute('aria-label','A hidden thing');b.style.left=g.x;b.style.top=g.y;
