@@ -38,7 +38,14 @@ const eggs = [  // hidden objects: where (section id), position, message
 ];
 const FINAL_SURPRISE = '[YOUR FINAL SECRET MESSAGE GOES HERE]';
 // Mini-games (optional, not wired yet): quiz / memory / hearts / choose-one
-const quizzes = { knowUs:[], memory:[], hearts:5, chooseOne:[] };
+// Quiz format: {q, o:[options], a:indexOfCorrect}
+const quizzes = {
+  knowUs:[{q:'[QUESTION 1]',o:['[A]','[B]','[C]'],a:0},{q:'[QUESTION 2]',o:['[A]','[B]','[C]'],a:1},{q:'[QUESTION 3]',o:['[A]','[B]','[C]'],a:2}],
+  memory:[{q:'[MEMORY QUESTION 1]',o:['[A]','[B]','[C]'],a:0},{q:'[MEMORY QUESTION 2]',o:['[A]','[B]','[C]'],a:1}],
+  hearts:5,  // how many hidden hearts to scatter across the site
+  chooseOne:[{a:'[OPTION A]',b:'[OPTION B]',reply:'[YOUR REACTION]'},{a:'[OPTION A]',b:'[OPTION B]',reply:'[YOUR REACTION]'}]
+};
+const GAME_WIN = 'Okay detective, you really do know us.';
 // =====================================
 
 const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
@@ -96,4 +103,21 @@ function init(){
     b.onclick=e=>{burst(e);toast(g.msg);b.style.opacity=.15};s.append(b)});
   // Final
   $('#last').onclick=e=>{burst(e);$('#lastMsg').textContent=FINAL_SURPRISE;e.target.hidden=true};
+
+  // Chat bubbles animate in when seen
+  new IntersectionObserver((es,o)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('go');o.unobserve(e.target)}}),{threshold:.4}).observe($('.chat'));
+  // Games
+  const gb=$('#gameBody'), gm=$('#gameModal'); const open=html=>{gb.innerHTML=html;gm.hidden=false;};
+  function quiz(list){ let i=0,s=0; const step=()=>{ if(i>=list.length){open(`<h3>${s}/${list.length}</h3><p>${s===list.length?GAME_WIN:'Not bad. Try again?'}</p>`);return;}
+      const q=list[i]; open(`<p class="small">${i+1} / ${list.length}</p><h3>${q.q}</h3>`+q.o.map((t,k)=>`<button class="btn opt" data-k="${k}">${t}</button>`).join(''));
+      $$('.opt').forEach(b=>b.onclick=()=>{ if(+b.dataset.k===q.a){s++;b.textContent+=' ✓'}else{b.textContent+=' ✗'} $$('.opt').forEach(x=>x.disabled=true); setTimeout(()=>{i++;step()},700)}); }; step(); }
+  function choose(list){ let i=0; const step=()=>{ if(i>=list.length){open('<h3>Chosen.</h3><p>Good choices.</p>');return;} const c=list[i];
+      open(`<h3>Choose one.</h3><button class="btn opt" data-k="a">${c.a}</button><button class="btn opt" data-k="b">${c.b}</button>`);
+      $$('.opt').forEach(b=>b.onclick=()=>{open(`<p class="hand">${c.reply}</p>`);setTimeout(()=>{i++;step()},1400)}); }; step(); }
+  let found=0, planted=false;
+  function hearts(){ const n=quizzes.hearts; if(!planted){ planted=true; const secs=$$('#site section'); for(let k=0;k<n;k++){ const s=secs[Math.floor(Math.random()*secs.length)],b=document.createElement('button');
+      b.className='egg heart';b.textContent='♡';b.setAttribute('aria-label','Hidden heart');b.style.left=(8+Math.random()*84)+'%';b.style.top=(8+Math.random()*84)+'%';
+      b.onclick=e=>{burst(e);b.remove();found++;$('#heartCount').textContent=`Hearts found: ${found} / ${n}`;if(found===n)toast('All hearts found. Obviously.')};s.append(b);} }
+    $('#heartCount').textContent=`Hearts found: ${found} / ${n}. They're scattered around the site.`; toast('Hidden hearts are now live. Go scroll.'); }
+  $$('[data-game]').forEach(b=>b.onclick=()=>{const g=b.dataset.game; g==='hearts'?hearts():g==='chooseOne'?choose(quizzes.chooseOne):quiz(quizzes[g])});
 }
