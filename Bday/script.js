@@ -40,7 +40,7 @@ const FINAL_SURPRISE = '[YOUR FINAL SECRET MESSAGE GOES HERE]';
 // Mini-games (optional, not wired yet): quiz / memory / hearts / choose-one
 // Quiz format: {q, o:[options], a:indexOfCorrect}
 const quizzes = {
-  knowUs:[{q:'What was the first message that i sent you?',o:['Yoo, You Aditi?','Hello, are you Sarah's frnd','Hiii, You must be Sarah's frnd'],a:0},{q:'[QUESTION 2]',o:['[A]','[B]','[C]'],a:1},{q:'[QUESTION 3]',o:['[A]','[B]','[C]'],a:2}],
+  knowUs:[{q:'What was the first message that i sent you?',o:['Yoo, You Aditi?',"Hello, are you Sarah's frnd","Hiii, You must be Sarah's frnd"],a:2},{q:'[QUESTION 2]',o:['[A]','[B]','[C]'],a:1},{q:'[QUESTION 3]',o:['[A]','[B]','[C]'],a:2}],
   memory:[{q:'[MEMORY QUESTION 1]',o:['[A]','[B]','[C]'],a:0},{q:'[MEMORY QUESTION 2]',o:['[A]','[B]','[C]'],a:1}],
   hearts:5,  // how many hidden hearts to scatter across the site
   chooseOne:[{a:'[OPTION A]',b:'[OPTION B]',reply:'[YOUR REACTION]'},{a:'[OPTION A]',b:'[OPTION B]',reply:'[YOUR REACTION]'}]
